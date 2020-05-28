@@ -1,57 +1,46 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import actions from "./services/index";
 import Home from "./components/home/Home";
-import About from "./components/about/About";
 import NotFound from "./components/404/NotFound.js";
 import SignUp from "./components/auth/SignUp";
 import LogIn from "./components/auth/LogIn";
 import Profile from "./components/profile/Profile";
-import actions from "./services/index";
-import Quiz from "./components/quiz";
-import Definition from "./components/definition";
-import Note from "./components/note";
-
+import Navbar from "./components/home/navbar";
+import Cart from "./components/Cart";
+import Selling from "./components/Selling";
 class App extends Component {
-  state = {};
+  state = {
+    items: [],
+    user: {},
+  };
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
-    this.setState({ ...user.data });
+    let items = await actions.getItems();
+    console.log(user, items);
+    this.setState({ user: user.data, items: items.data.items });
   }
 
-  setUser = (user) => this.setState(user);
+  setUser = (user) => this.setState({ user });
 
   logOut = async () => {
-  await actions.logOut();
+    await actions.logOut();
     this.setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   };
 
   render() {
     return (
-      <BrowserRouter>
-        {this.state.email}
-        <nav>
-          <NavLink to="/"> Home|</NavLink>
-          <NavLink to="/about">About |</NavLink>
-
-          {this.state.email ? (
-            <Fragment>
-              <NavLink onClick={this.logOut} to="/">
-                Log Out |
-              </NavLink>
-              <NavLink to="/profile">Profile|</NavLink>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <NavLink to="/sign-up">Sign Up |</NavLink>
-              <NavLink to="/log-in">Log In |</NavLink>
-            </Fragment>
-          )}
-        </nav>
-
+      <>
+        {"Welcome, "}
+        {this.state.user.email}
+        <Navbar isLoggedIn={this.state.user._id ? true : false} />
         <Switch>
-          <Route exact path="/" render={(props) => <Home {...props} />} />
-          <Route exact path="/about" render={(props) => <About {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={(props) => <Home items={this.state.items} {...props} />}
+          />
           <Route
             exact
             path="/sign-up"
@@ -65,26 +54,27 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile {...props} user={this.state} />}
+            render={(props) => <Profile {...props} user={this.state.user} />}
           />
           <Route
             exact
-            path="/quiz"
-            render={(props) => <Quiz {...props} user={this.state} />}
+            path="/cart"
+            render={(props) => (
+              <Cart
+                {...props}
+                user={this.state.user}
+                items={this.state.items}
+              />
+            )}
           />
           <Route
             exact
-            path="/definition"
-            render={(props) => <Definition {...props} user={this.state} />}
-          />
-          <Route
-            exact
-            path="/note"
-            render={(props) => <Note {...props} user={this.state} />}
+            path="/selling"
+            render={(props) => <Selling {...props} user={this.state.user} />}
           />
           <Route component={NotFound} />
         </Switch>
-      </BrowserRouter>
+      </>
     );
   }
 }

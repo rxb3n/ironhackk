@@ -1,10 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const question = require("../models/question");
-const definition= require('../models/definition')
-console.log(process.env.MONGODB_URI);
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/quiz-questions";
+const Item = require("../models/Item");
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/questions";
 console.log("Connecting DB to ", MONGODB_URI);
 
 mongoose
@@ -13,6 +10,37 @@ mongoose
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   )
   .catch((err) => console.error("Error connecting to mongo", err));
+
+const items = [
+  {
+    name: "Apple iPhone X",
+    description: "Apple Phone",
+    imgUrl: "images/iphonex.jpg",
+    price: 999.99,
+    quantity: 1,
+  },
+  {
+    name: "Samsung Galaxy S20",
+    description: "Samsung Phone",
+    imgUrl: "images / galaxyxx.jpg",
+    price: 1099.99,
+    quantity: 1,
+  },
+  {
+    name: "LG Stylo 5",
+    description: "LG Phone",
+    imgUrl: "images/lg5.jpg",
+    price: 699.99,
+    quantity: 1,
+  },
+];
+
+Item.insertMany(items)
+  .then((response) => {
+    console.log(response);
+    mongoose.disconnect();
+  })
+  .catch((err) => console.log(err));
 
 // const questions = [
 //   {
@@ -126,18 +154,18 @@ mongoose
 //   },
 // ];
 
-question
-  .insertMany(questions)
-  .then((questions) => {
-    console.log(questions);
-    mongoose.disconnect();
-  })
-  .catch((err) => console.log(err));
-  
-  definition
-  .insertMany(questions)
-  .then((questions) => {
-    console.log(questions);
-    mongoose.disconnect();
-  })
-  .catch((err) => console.log(err));
+// question
+//   .insertMany(questions)
+//   .then((questions) => {
+//     console.log(questions);
+//     mongoose.disconnect();
+//   })
+//   .catch((err) => console.log(err));
+
+// definition
+//   .insertMany(questions)
+//   .then((questions) => {
+//     console.log(questions);
+//     mongoose.disconnect();
+//   })
+//   .catch((err) => console.log(err));
