@@ -19,7 +19,7 @@ class Cart extends Component {
               <h4>
                 {item.name} * {item.quantity}
               </h4>
-              <h5>$ {item.price}</h5>
+              <h5>-$ {item.price}</h5>
             </div>
           );
         })}

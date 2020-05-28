@@ -114,3 +114,13 @@ body {
   font-size: 13px;
   color: white
 }
+
+.welcoming {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.card-img-top {
+  height: 150px;
+  max-width: 200px;
+}

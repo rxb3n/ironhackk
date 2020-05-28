@@ -30,7 +30,10 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: true, //["http://localhost:3000", "https://distracted-noyce-fee0e2.netlify.com"] //Swap this with the client url
+    origin:
+      ironshop.netlify.app[
+        ("http://localhost:3000", "https://ironshop.netlify.app")
+      ], //Swap this with the client url
   })
 );
 
