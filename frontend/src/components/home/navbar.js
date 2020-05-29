@@ -77,7 +77,7 @@ class NavbarPage extends Component {
                       </MDBDropdownItem>
                     </>
                   ) : (
-                    <MDBDropdownItem onClick={(actions.logOut, refreshPage)}>
+                    <MDBDropdownItem onClick={actions.logOut}>
                       <i className="fa fa-user-times" aria-hidden="true"></i>{" "}
                       Log Out
                     </MDBDropdownItem>

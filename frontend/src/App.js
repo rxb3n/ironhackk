@@ -36,7 +36,7 @@ class App extends Component {
     return (
       <>
         <div className="welcoming">
-          {"Welcome, "}
+          {"Welcome to IronShop, "}
           {this.state.user.email}
         </div>
         <Navbar isLoggedIn={this.state.user._id ? true : false} />
