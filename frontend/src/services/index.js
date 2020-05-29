@@ -39,6 +39,9 @@ const actions = {
   addItemToCart: async (data) => {
     return await service.post("/cart", data);
   },
+  newItem: async (data) => {
+    return await service.post("/items", data);
+  },
 };
 
 export default actions;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 class Cart extends Component {
   render() {
     let items =
-      this.props.user?.cart?.items.map((id) =>
+      this.props.user?.cart?.items?.map((id) =>
         this.props.items.find((item) => (item._id = id))
       ) || [];
     let price = 0;
@@ -26,6 +26,7 @@ class Cart extends Component {
         <div className="total-price">
           <h3>Total Price in USD: $ {price.toFixed(2)}</h3>
         </div>
+        <button type="submit">Confirm Purchase</button>
       </div>
     );
   }

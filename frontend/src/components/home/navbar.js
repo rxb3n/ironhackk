@@ -14,6 +14,7 @@ import {
   MDBDropdownItem,
 } from "mdbreact";
 import { Link } from "react-router-dom";
+import actions from "../../services";
 
 class NavbarPage extends Component {
   state = {
@@ -35,24 +36,25 @@ class NavbarPage extends Component {
           <MDBNavbarNav left>
             <MDBNavItem active>
               <MDBNavLink to="/">
-                <i class="fa fa-home" aria-hidden="true"></i> Home
+                <i className="fa fa-home" aria-hidden="true"></i> Home
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/cart">
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i> Cart
+                <i className="fa fa-shopping-bag" aria-hidden="true"></i> Cart
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/selling">
-                <i class="fa fa-money" aria-hidden="true"></i> Sell Item
+                <i className="fa fa-money" aria-hidden="true"></i> Sell Item
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
                   <span className="mr-2">
-                    <i class="fa fa-user-circle" aria-hidden="true"></i> User
+                    <i className="fa fa-user-circle" aria-hidden="true"></i>{" "}
+                    User
                   </span>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
@@ -60,22 +62,21 @@ class NavbarPage extends Component {
                     <>
                       <MDBDropdownItem>
                         <Link to="/log-in">
-                          <i class="fa fa-plug" aria-hidden="true"></i> Log In
+                          <i className="fa fa-plug" aria-hidden="true"></i> Log
+                          In
                         </Link>
                       </MDBDropdownItem>
                       <MDBDropdownItem>
                         <Link to="/sign-up">
-                          <i class="fa fa-user-plus" aria-hidden="true"></i>{" "}
+                          <i className="fa fa-user-plus" aria-hidden="true"></i>{" "}
                           Register
                         </Link>
                       </MDBDropdownItem>
                     </>
                   ) : (
-                    <MDBDropdownItem>
-                      <Link to="/logout">
-                        <i class="fa fa-user-times" aria-hidden="true"></i> Log
-                        Out
-                      </Link>
+                    <MDBDropdownItem onClick={actions.logOut}>
+                      <i className="fa fa-user-times" aria-hidden="true"></i>{" "}
+                      Log Out
                     </MDBDropdownItem>
                   )}
                 </MDBDropdownMenu>

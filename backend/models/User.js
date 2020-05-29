@@ -25,7 +25,7 @@ const userSchema = new Schema(
 
 userSchema.plugin(PLM, {
   usernameField: "email",
-  populateFields: ["cart", "item"],
+  populateFields: ["cart"],
 });
 
 module.exports = model("User", userSchema);

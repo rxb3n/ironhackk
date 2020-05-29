@@ -1,7 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const Item = require("../models/Item");
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/questions";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/items";
 console.log("Connecting DB to ", MONGODB_URI);
 
 mongoose

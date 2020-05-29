@@ -24,10 +24,17 @@ class App extends Component {
 
   setUser = (user) => this.setState({ user });
 
+  setItems = (item) =>
+    this.setState((prevState) => ({ items: [...prevState.items, item] }));
+
   logOut = async () => {
     await actions.logOut();
     this.setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   };
+
+  // hideItem = async () => {
+  //   this.setState(items);
+  // };
 
   render() {
     return (
@@ -70,7 +77,13 @@ class App extends Component {
           <Route
             exact
             path="/selling"
-            render={(props) => <Selling {...props} user={this.state.user} />}
+            render={(props) => (
+              <Selling
+                setItems={this.setItems}
+                {...props}
+                user={this.state.user}
+              />
+            )}
           />
           <Route component={NotFound} />
         </Switch>

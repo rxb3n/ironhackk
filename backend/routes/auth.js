@@ -22,12 +22,19 @@ router.post("/signup", (req, res, next) => {
 
 //return await service.get('/is-logged-in');
 router.get("/is-logged-in", (req, res, next) => {
+  console.log(req.user);
   res.json(req.user);
 });
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
+  // Cart.findById(req.cart)
+  //   .populate("item")
+  //   .then((cart) => {
   const { user } = req;
+  // console.log("Users cart", cart, user.cart.items);
+  // user.cart = cart;
   res.status(200).json(user);
+  // });
 });
 
 router.get("/logout", (req, res, next) => {

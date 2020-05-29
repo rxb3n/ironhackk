@@ -10,26 +10,33 @@ class Product extends Component {
 
   displayItems = () => {
     return this.props.items.map((item) => (
-      <div className="card" style={{ width: "18rem;" }}>
-        <img src="images/iphonex.jpg" className="card-img-top" alt="..." />
+      <div className="card" style={{ width: "18rem" }} key={item._id}>
+        <img src={item.imgUrl} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
           <p className="card-text">{item.description}</p>
           <div className="price">{`$${item.price}`}</div>
           <button
-            type="button"
-            onClick={() => this.addItemToCart(item._id, 1)}
+            type="submit"
+            onClick={() => this.addItemToCart(item._id, 2)}
             to="#"
             className="btn btn-primary"
           >
             <i className="fa fa-cart-plus" aria-hidden="true"></i> Add to cart
+          </button>
+          <button
+            type="submit"
+            onClick={() => this.hideItem()}
+            to="#"
+            className="dismiss-button btn "
+          >
+            <i class="fa fa-trash" aria-hidden="true"></i> Dismiss
           </button>
         </div>
       </div>
     ));
   };
   render() {
-    console.log(this.props);
     return (
       <div>
         <div className="mugthumbs">

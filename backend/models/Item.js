@@ -8,7 +8,7 @@ const itemSchema = new Schema(
     price: Number,
     quantity: {
       type: Number,
-      default: 0,
+      default: 1,
     },
   },
   {
