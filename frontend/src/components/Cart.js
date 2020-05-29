@@ -17,7 +17,7 @@ class Cart extends Component {
           return (
             <div key={item._id}>
               <h4>
-                {item.name} * {item.quantity}
+                {item.name} x {item.quantity}
               </h4>
               <h5>-$ {item.price}</h5>
             </div>

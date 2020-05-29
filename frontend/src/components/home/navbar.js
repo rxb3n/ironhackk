@@ -15,6 +15,9 @@ import {
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import actions from "../../services";
+function refreshPage() {
+  window.location.reload(false);
+}
 
 class NavbarPage extends Component {
   state = {
@@ -74,7 +77,7 @@ class NavbarPage extends Component {
                       </MDBDropdownItem>
                     </>
                   ) : (
-                    <MDBDropdownItem onClick={actions.logOut}>
+                    <MDBDropdownItem onClick={(actions.logOut, refreshPage)}>
                       <i className="fa fa-user-times" aria-hidden="true"></i>{" "}
                       Log Out
                     </MDBDropdownItem>

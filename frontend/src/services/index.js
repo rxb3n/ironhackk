@@ -42,6 +42,9 @@ const actions = {
   newItem: async (data) => {
     return await service.post("/items", data);
   },
+  deleteItem: async (id) => {
+    return await service.post("/items/" + id);
+  },
 };
 
 export default actions;

@@ -18,7 +18,7 @@ class Product extends Component {
           <div className="price">{`$${item.price}`}</div>
           <button
             type="submit"
-            onClick={() => this.addItemToCart(item._id, 2)}
+            onClick={() => this.addItemToCart(item._id, 1)}
             to="#"
             className="btn btn-primary"
           >
@@ -26,9 +26,9 @@ class Product extends Component {
           </button>
           <button
             type="submit"
-            onClick={() => this.hideItem()}
             to="#"
             className="dismiss-button btn "
+            onClick={() => actions.deleteItem(item._id)}
           >
             <i class="fa fa-trash" aria-hidden="true"></i> Dismiss
           </button>

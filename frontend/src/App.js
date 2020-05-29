@@ -32,10 +32,6 @@ class App extends Component {
     this.setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   };
 
-  // hideItem = async () => {
-  //   this.setState(items);
-  // };
-
   render() {
     return (
       <>
