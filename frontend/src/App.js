@@ -39,8 +39,10 @@ class App extends Component {
   render() {
     return (
       <>
-        {"Welcome, "}
-        {this.state.user.email}
+        <div className="welcoming">
+          {"Welcome, "}
+          {this.state.user.email}
+        </div>
         <Navbar isLoggedIn={this.state.user._id ? true : false} />
         <Switch>
           <Route

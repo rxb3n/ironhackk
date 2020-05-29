@@ -122,12 +122,12 @@ body {
   color: white
 }
 
-.welcoming {
-  font-size: 12px;
-  font-weight: 800;
-}
-
 .card-img-top {
   height: 150px;
   max-width: 200px;
+}
+
+.welcoming {
+  font-size: 25px;
+  font-weight: 500;
 }
